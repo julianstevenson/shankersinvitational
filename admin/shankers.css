@@ -1,0 +1,263 @@
+html { 
+  background: url(bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.bgwhite {
+  background-color: rgb(255,255,255);  
+}
+
+.bf_button {  
+  display:block; 
+  background: url(image/bf_button_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 8px; 
+  text-decoration: none; 
+ } 
+
+.bf_button:hover {  
+  text-decoration: none; 
+  background: url(image/bf_button_fon_right_hover.jpg) no-repeat 100%;  
+} 
+
+.bf_button:hover span{  
+  text-decoration: none; 
+  color: rgb(83, 74, 33);
+  background: url(image/bf_button_fon_left_hover.jpg) no-repeat;  
+} 
+
+.bf_button span{  
+  display:block; 
+  background: url(image/bf_button_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 27px; 
+  padding: 0 0 0 8px; 
+  font-family: Arial, Verdana; 
+  font-size: 15px; 
+  font-weight: normal;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
+
+h1.bf_button_header {  
+  display:block; 
+  background: url(image/bf_button_hdr_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 19px; 
+  text-decoration: none; 
+  text-align:center; 
+} 
+
+
+h1.bf_button_header span{  
+  display:block; 
+  background: url(image/bf_button_hdr_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 61px; 
+  padding: 0 0 0 19px; 
+  font-family: Arial, Verdana; 
+  font-size: 45px; 
+  font-weight: bold;  
+  color: rgb(255,255,255);  
+  text-transform: none; 
+  text-align:center; 
+ }
+
+h1
+{
+font-weight:bold;color:#ffffff;font-size:50px;text-align:center;font-family:arial, helvetica, sans-serif;line-height:1;
+}
+
+h2
+{
+font-weight:bold;color:#ffffff;font-size:35px;text-align:center;font-family:arial, helvetica, sans-serif;line-height:1;
+}
+
+h3
+{
+text-shadow:1px -1px 1px rgba(55,122,71,1);font-weight:bold;color:#316F1B;letter-spacing:2pt;word-spacing:1pt;font-size:20px;text-align:center;font-family:arial, helvetica, sans-serif;margin:5px;padding:0px;line-height:1;
+}
+
+td.emph
+{
+text-shadow:1px -1px 1px rgba(55,122,71,1);font-weight:bold;color:#316F1B;letter-spacing:2pt;word-spacing:1pt;font-size:28px;text-align:center;font-family:arial, helvetica, sans-serif;
+}
+
+td
+{
+   color:#316F1B;
+   font-size:14px;
+   font-family:arial, helvetica, sans-serif;
+   line-height:1;
+}
+
+td.white
+{
+   background: rgb(255,255,255);
+  border:2px outset rgba(52,122,71,1);
+}
+
+td.vdiv
+{
+  border-left:2px solid rgba(52,122,71,1);
+}
+
+tr.border {
+  border:1px solid rgba(52,122,71,1);
+}
+
+a
+{
+   color:#316F1B;
+   font-size:14px;
+   font-family:arial, helvetica, sans-serif;
+   line-height:1;
+}
+
+a:hover {
+  color: rgb(152, 184, 92);
+}
+
+
+.bf_button_round {  
+  display:block; 
+  background: url(image/bf_button_round_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 21px; 
+  text-decoration: none; 
+ } 
+
+.bf_button_round:hover {  
+  text-decoration: none; 
+} 
+
+.bf_button_round span{  
+  display:block; 
+  background: url(image/bf_button_round_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 44px; 
+  padding: 0 0 0 21px; 
+  font-family: Arial, Verdana; 
+  font-size: 21px; 
+  font-weight: normal;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
+ 
+ .bf_button_score {  
+  display:block; 
+  background: url(image/bf_button_score_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 12px; 
+  text-decoration: none; 
+ } 
+
+.bf_button_score:hover {  
+  text-decoration: none; 
+} 
+  #mainTable {
+  background:url(image/shankersbanner.jpg) no-repeat center top;
+    margin: 0 auto;
+    vertical-align: middle;
+  border:1px outset rgba(52,122,71,1);
+  width:500px;
+  }
+
+.bf_button_score span{  
+  display:block; 
+  background: url(image/bf_button_score_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 60px; 
+  padding: 0 0 0 12px; 
+  font-family: Arial, Verdana; 
+  font-size: 25px; 
+  font-weight: bold;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
+ 
+ .bf_button_scoresmall {  
+  display:block; 
+  background: url(image/bf_button_scoresmall_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 8px; 
+  text-decoration: none; 
+ } 
+
+.bf_button_scoresmall:hover {  
+  text-decoration: none; 
+} 
+
+.bf_button_scoresmall span{  
+  display:block; 
+  background: url(image/bf_button_scoresmall_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 37px; 
+  padding: 0 0 0 8px; 
+  font-family: Arial, Verdana; 
+  font-size: 15px; 
+  font-weight: normal;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
+
+
+.bf_button_naga {  
+  display:block; 
+  background: url(image/bf_button_naga_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 12px; 
+  text-decoration: none; 
+ } 
+
+.bf_button_naga:hover {  
+  text-decoration: none; 
+} 
+
+.bf_button_naga span{  
+  display:block; 
+  background: url(image/bf_button_naga_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 60px; 
+  padding: 0 0 0 12px; 
+  font-family: Arial, Verdana; 
+  font-size: 25px; 
+  font-weight: bold;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
+ 
+ .bf_button_leader {  
+  display:block; 
+  background: url(image/bf_button_leader_fon_right.gif) no-repeat 100%; 
+  float: center; 
+  outline: none; 
+  padding-right: 12px; 
+  text-decoration: none; 
+ } 
+
+.bf_button_leader:hover {  
+  text-decoration: none; 
+} 
+
+.bf_button_leader span{  
+  display:block; 
+  background: url(image/bf_button_leader_fon_left.gif) no-repeat;  
+  white-space: nowrap; 
+  line-height: 60px; 
+  padding: 0 0 0 12px; 
+  font-family: Arial, Verdana; 
+  font-size: 25px; 
+  font-weight: bold;  
+  color: rgb(255,255,255);  
+  text-transform: none;  
+ }
