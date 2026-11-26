@@ -1,4 +1,4 @@
-<?
+<?php
 include '../dbutils.php';
 include '../utils.php';
 
@@ -193,7 +193,7 @@ if (!$golfers) {?>
 				</tr>
 			<tr valign="middle">
 				<td align="left" nowrap>&nbsp;</td>
-			<td align="left" nowrap><?php  echo createinput_select( "year", "year", "year", (date("Y") + 1) + "") ?></td>
+			<td align="left" nowrap><?php  echo createinput_select( "year", "year", "year", (date("Y") + 1) . "") ?></td>
 				<td align="left" nowrap><?php  createinput_text("compname", "", "20", "50", "Competition Name")?></td>
 				<td align="left" nowrap><?php  createinput_text("venue", "", "20", "50", "Course")?></td>
 				<td align="left" nowrap><?php  createinput_text("startdate", "", "10", "10", "yyyy-mm-dd")?></td>
@@ -204,13 +204,13 @@ if (!$golfers) {?>
 <?php 
  				$rowcount = 0;
  				$maxid = 0;
-				while ($row = mysql_fetch_assoc($golfers)) {
+				while ($row = db_fetch_assoc($golfers)) {
 						$rowcount += 1;
 
 		?>
 			<tr valign="middle">
-				<td align="left" nowrap><a href="competitions_update.php?delete=<? echo $row['id'] ?>"><input type="button" value="Delete"></a></td>
-			<td align="left" nowrap><input type="hidden" name="id<? echo $row['id']?>" value="<? echo $row['id']?>"><?php echo createinput_select("year".$row['id'], "year", "year", $row['yearid'])?></td>
+				<td align="left" nowrap><a href="competitions_update.php?delete=<?php echo $row['id'] ?>"><input type="button" value="Delete"></a></td>
+			<td align="left" nowrap><input type="hidden" name="id<?php echo $row['id']?>" value="<?php echo $row['id']?>"><?php echo createinput_select("year".$row['id'], "year", "year", $row['yearid'])?></td>
 				<td align="left" nowrap><?php  createinput_text("compname".$row['id'], $row['compname'], "20", "50", "Competition Name")?></td>
 				<td align="left" nowrap><?php  createinput_text("venue".$row['id'], $row['venue'], "20", "50", "Course")?></td>
 				<td align="left" nowrap><?php  createinput_text("startdate".$row['id'], $row['startdate'], "10", "10", "yyyy-mm-dd")?></td>

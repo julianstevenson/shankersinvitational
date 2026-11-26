@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -94,14 +94,14 @@ $comps = mhexecquery($query, $comperr);
 						<ul class="list-4 widget-list option-set" id="filter" data-option-key="filter">
 						 	<li><a href="#show-all" data-option-value="*" class="selected">Show All Images</a></li>
 <?php 					$iii = 0;
-						while ($row = mysql_fetch_assoc($comps)) { 
+						while ($row = db_fetch_assoc($comps)) { 
 							$iii = $iii+1;
 							
 							if ($row['photocount'] . 0 > 0 ) {?>
 						 	<li><a href="#cat-<?php echo $row['compid']?>" data-option-value=".cat-<?php echo $row['compid']?>"><?php echo $row['compname']?></a></li>
 <?php }} 
 $compcount = $iii;
-mysql_data_seek($comps, 0);
+db_data_seek($comps, 0);
 ?>
 
 </ul>
@@ -116,7 +116,7 @@ mysql_data_seek($comps, 0);
 					<div class="col-3-4 last thumb-gallery super-list variable-sizes clearfix" id="thumb-gallery">
 						<!-- Start Thumbnail -->
 						<?php $iii = 1;
-						while ($row = mysql_fetch_assoc($comps)) { 
+						while ($row = db_fetch_assoc($comps)) { 
 							$jjj = 1;
 							while ($jjj<=$row['photocount']) {
 ?>

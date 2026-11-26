@@ -1,4 +1,4 @@
-<?
+<?php
 include '../dbutils.php';
 include '../utils.php';
 
@@ -80,7 +80,7 @@ $msg = $_GET['msg'];
 		$roundname ="Error";
 	} 
 	else {
-	 	if ($row =  mysql_fetch_assoc($roundrec)) {
+	 	if ($row =  db_fetch_assoc($roundrec)) {
 			$roundname =  $row['location'] . " round " . $row['number'];
 	 	}
 	 	else {
@@ -174,7 +174,7 @@ if ($err != '') {
 <?php 
  				$rowcount = 0;
  				$maxid = 10;
-				while ($row = mysql_fetch_assoc($golfers)) {
+				while ($row = db_fetch_assoc($golfers)) {
 						$rowcount += 1;
 				if ($row['scoreid']=="") {
 					$rowid= "new".$rowcount;
@@ -183,11 +183,11 @@ if ($err != '') {
 					$rowid = $row['scoreid'];
 				}
 		?>
-				<input type="hidden" name="scoreid<? echo $rowid?>" value="<? echo  $row['scoreid']?>">
-				<input type="hidden" name="golferid<? echo $rowid?>" value="<? echo  $row['golferid']?>">
-				<b><? echo $row['nickname']?></b>
-				<input type="text" name="score<? echo $rowid?>" placeholder="Score" size="5" maxlength="3" value="<?php echo $row['score']?>">
-				<input type="text" name="points<? echo $rowid?>" placeholder="Points" size="5" maxlength="3" value="<?php echo $row['points'] + 0?>">
+				<input type="hidden" name="scoreid<?php echo $rowid?>" value="<?php echo  $row['scoreid']?>">
+				<input type="hidden" name="golferid<?php echo $rowid?>" value="<?php echo  $row['golferid']?>">
+				<b><?php echo $row['nickname']?></b>
+				<input type="text" name="score<?php echo $rowid?>" placeholder="Score" size="5" maxlength="3" value="<?php echo $row['score']?>">
+				<input type="text" name="points<?php echo $rowid?>" placeholder="Points" size="5" maxlength="3" value="<?php echo $row['points'] + 0?>">
 				<?php 
 		if ($row['scoreid'] + 0>$maxid) {$maxid=$row['scoreid'];}
 	}	

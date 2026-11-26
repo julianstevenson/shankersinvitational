@@ -1,4 +1,4 @@
-<?
+<?php
 include 'config.php';
 
 function encryptsession($sessionid) {
@@ -130,24 +130,24 @@ function mhlogtofile($file_name, $logentry) {
 }
 
 function getsessionuser($sessionid) {
-    list($email, $user, $logintime, $admin) =  split('[|]', decryptsession($sessionid));
+    list($email, $user, $logintime, $admin) =  explode('|', decryptsession($sessionid));
 	return trim($user);
 }
 
 function getsessionemail($sessionid) {
-    list($email, $user, $logintime, $admin) =  split('[|]', decryptsession($sessionid));
+    list($email, $user, $logintime, $admin) =  explode('|', decryptsession($sessionid));
 	return trim($email);
 }
 
 
 function getsessiontime($sessionid) {
-    list($email, $user, $logintime, $admin) =  split('[|]', decryptsession($sessionid));
+    list($email, $user, $logintime, $admin) =  explode('|', decryptsession($sessionid));
 	return trim($logintime);
 }
 
 function getsessionadmin($sessionid) {
 	$admin = '0';
-    list($email, $user, $logintime, $admin) =  split('[|]', decryptsession($sessionid));
+    list($email, $user, $logintime, $admin) =  explode('|', decryptsession($sessionid));
 	return trim($admin);
 }
 
@@ -355,7 +355,7 @@ function createinput_select($selectname, $tablename, $displayfld, $objvalue, $on
     if ($showall) {
       $retstr  .= '<option value="">Show All</option>';
     }
-    while ($row = mysql_fetch_assoc($values)) {
+    while ($row = db_fetch_assoc($values)) {
       if ($row['id'] == $objvalue) {
         $retstr  .= sprintf( '<option value="%s" selected>%s</option>', $row['id'] , $row[$displayfld]);
       }
@@ -400,7 +400,7 @@ function createinput_select_fm($fmid, $famid='', $onchange="", $showall=false){
     if ($showall) {
       $retstr  .= '<option value="">Show All</option>';
     }
-    while ($row = mysql_fetch_assoc($values)) {
+    while ($row = db_fetch_assoc($values)) {
       if ($row['id'] == $fmid) {
         $retstr  .= sprintf( '<option value="%s" selected>%s</option>', $row['id'] , $row['displayname']);
       }
@@ -434,7 +434,7 @@ function createinput_select_recipient($objvalue, $hasemail=1) {
   else {
     $retstr  = '<select name="family_id[]" size="5" class="mhmulti" style="height:100" multiple>';
 
-    while ($row = mysql_fetch_assoc($values)) {
+    while ($row = db_fetch_assoc($values)) {
       $selected = false;
       if ($objvalue) {
         foreach ($objvalue as $value) {
@@ -475,7 +475,7 @@ function createinput_select_location($tablename, $objvalue, $onchange="") {
     $retstr  = '<select name="location_id"' . $onchange . '>';
     $retstr  .= '<option value="">&lt;Select Address&gt;</option>';
     $retstr  .= '<option value="-1">New Address...</option>';
-    while ($row = mysql_fetch_assoc($values)) {
+    while ($row = db_fetch_assoc($values)) {
       $address = trim($row['country']);
       if (trim($row['town']) !== '') {
         if ($address !== '' ) $address .= ', ' . trim($row['town']); else $address .= trim($row['town']);
@@ -567,7 +567,7 @@ function getCurrentComp() {
 	if ($currentcomp =='') {
 		$query = sprintf( "select compid from currentcomp;" );
 		$currentcomps = mhexecquery($query, $err);
-		$row = mysql_fetch_assoc($currentcomps);
+		$row = db_fetch_assoc($currentcomps);
 		$currentcomp = $row['compid'];
 	}
 	return $currentcomp;

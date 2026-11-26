@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -8,7 +8,7 @@ $currentcomp = getCurrentComp();
 
 	//get number of seeding events
 	$queryeventcount = sprintf("SELECT count(*) as eventcount FROM seeding WHERE compid=%s and eventdate <=now()", $currentcomp);	
-	$eventcountrs = mysql_fetch_assoc(mhexecquery($queryeventcount, $err));
+	$eventcountrs = db_fetch_assoc(mhexecquery($queryeventcount, $err));
 	
 	if (!$eventcountrs) {
 		$numEvents=0;
@@ -123,12 +123,12 @@ $currentcomp = getCurrentComp();
 					</thead>
 					<tbody>
 					<?php 
-					while ($pointsrow = mysql_fetch_assoc($points)) {
+					while ($pointsrow = db_fetch_assoc($points)) {
 						?>
 						
-						<td align="center"><p class="lead"><img src="<? echo $pointsrow['avatar']?>"  width="35" height="27" border="0">
-	       					<b><? echo $pointsrow['nickname'] ?></b></p></td>
-						<td align="center"><p class="lead"><? echo zerotodash($pointsrow['totalpoints']) ?></p></td>
+						<td align="center"><p class="lead"><img src="<?php echo $pointsrow['avatar']?>"  width="35" height="27" border="0">
+	       					<b><?php echo $pointsrow['nickname'] ?></b></p></td>
+						<td align="center"><p class="lead"><?php echo zerotodash($pointsrow['totalpoints']) ?></p></td>
 						</tr>
 						<?php		
 					}
@@ -164,7 +164,7 @@ $currentcomp = getCurrentComp();
 					$yyy = 0;
 					$summaryplayerid = 0;
 					
-					while ($summaryrow = mysql_fetch_assoc($summary)) {
+					while ($summaryrow = db_fetch_assoc($summary)) {
 						$iscore= $summaryrow['score'] + 0;
 						
 
@@ -183,7 +183,7 @@ $currentcomp = getCurrentComp();
 						?>
 						</tr>
 						<tr  valign="middle">
-							<td align="center" ><img src="<? echo $summaryrow['avatar']?>"  width="35" height="27" border="0"><?php echo $summaryrow['nickname']?></a></td>
+							<td align="center" ><img src="<?php echo $summaryrow['avatar']?>"  width="35" height="27" border="0"><?php echo $summaryrow['nickname']?></a></td>
 							<td align="center" ><?php echo zerotodash($iscore)?></td>
 							<?php 
 						}

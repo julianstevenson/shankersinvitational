@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 $currentcomp = getCurrentComp();

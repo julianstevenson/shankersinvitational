@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -10,12 +10,13 @@ $currentcomp = getCurrentComp();
 if ($seedingid =="") {
 	//redirect to seeding summary page
 	header("Location: formsummary.php?compid=" . $currentcomp);
+	exit;
 	
 }
 
-$query = sprintf("SELECT distinct * from seeding where seeding.id=%s", $seedingid);
+$query = sprintf("SELECT distinct * from seeding where seeding.id=%d", $seedingid);
 $seeding = mhexecquery($query, $err);
-$seedingrow = mysql_fetch_assoc($seeding);
+$seedingrow = db_fetch_assoc($seeding);
 if (!$seedingrow) {
 	$err = "That doesn't appear to be a valid event id.";
 }
@@ -127,7 +128,7 @@ if ($err <> "") {
 				</div> 
 				
 				<h3>On The Day</h3>
-				<p><? if ($seedingrow['writeup'] == "") {
+				<p><?php if ($seedingrow['writeup'] == "") {
 						echo "No writeup yet - check back soon!";
 					}
 					else {
@@ -155,7 +156,7 @@ if ($err <> "") {
 			<aside class="col-1-4 last">
 <?php    	$rowcount = 0;
 $endtable = false;
-			while ($eventscoresrow = mysql_fetch_assoc($eventscores))
+			while ($eventscoresrow = db_fetch_assoc($eventscores))
 			{	
 				$rowcount .= 1;
 				if ($rowcount==1) {?>
@@ -195,7 +196,7 @@ $endtable = false;
 				<div class="widget">
 				    <h3>Other Events</h3>
 				    <ul class="widget-event-list">				    
-<?php 				while ($alleventsrow = mysql_fetch_assoc($allevents)) { 
+<?php 				while ($alleventsrow = db_fetch_assoc($allevents)) { 
 						if ( $alleventsrow['id'] <> $seedingid) {
 							
 ?>

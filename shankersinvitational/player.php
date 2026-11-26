@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 $currentcomp = getCurrentComp();
@@ -76,16 +76,16 @@ $currentcomp = getCurrentComp();
 			FROM golfer
 			where golfer.compid=%s and golfer.nickname=%s", sqlsafe($currentcomp), sqlsafe($_GET['player']) );
 	$player = mhexecquery($query, $err);
-	$row = mysql_fetch_assoc($player)?>				
+	$row = db_fetch_assoc($player)?>				
 			<div class="main-content col-4-5 right last">
-				<h1><? echo $row['nickname']?></h1>
+				<h1><?php echo $row['nickname']?></h1>
 				
 				
-				<div class="mosaic-block circle col-1-3"><a href="/<? echo $row['avatar']?>" class="mosaic-overlay link fancybox" data-fancybox-group="gallery" title="Coach John Doe"></a>
-				<div class="mosaic-backdrop"><img src="/<? echo $row['avatar']?>" alt="<? echo $row['nickname']?>" /></div></div>
+				<div class="mosaic-block circle col-1-3"><a href="/<?php echo $row['avatar']?>" class="mosaic-overlay link fancybox" data-fancybox-group="gallery" title="Coach John Doe"></a>
+				<div class="mosaic-backdrop"><img src="/<?php echo $row['avatar']?>" alt="<?php echo $row['nickname']?>" /></div></div>
 				
 				
-				<? echo $row['description']?>
+				<?php echo $row['description']?>
 				<!-- Finish Main Content -->
 			</div>
 			
@@ -93,11 +93,11 @@ $currentcomp = getCurrentComp();
 			<!-- Start Main Sidebar  -->
 			<aside class="col-1-5">
 				<div class="widget">
-			    	<h3><? echo $row['role']?></h3>
+			    	<h3><?php echo $row['role']?></h3>
 			    	<ul class="widget-list">
-                                        <li><strong>Handicap:</strong>&nbsp; <? echo $row['handicap']?></li>
-			    		<li><strong>Golflink:</strong>&nbsp; <a href="http://www.golf.org.au/handicap/<? echo $row['golflink']?>"><? echo $row['golflink']?></a></li>
-			    		<li><strong>Email:</strong>&nbsp; <? echo $row['email']?></li>
+                                        <li><strong>Handicap:</strong>&nbsp; <?php echo $row['handicap']?></li>
+			    		<li><strong>Golflink:</strong>&nbsp; <a href="http://www.golf.org.au/handicap/<?php echo $row['golflink']?>"><?php echo $row['golflink']?></a></li>
+			    		<li><strong>Email:</strong>&nbsp; <?php echo $row['email']?></li>
 <!--  			    					    		<li><a href="#"><em class="fa fa-facebook-square"></em>&nbsp; Facebook</a></li>
 			    		<li><a href="#"><em class="fa fa-linkedin-square"></em>&nbsp; LinkedIn</a></li>
 			    		<li><a href="#"><em class="fa fa-instagram"></em>&nbsp; Instagram</a></li>

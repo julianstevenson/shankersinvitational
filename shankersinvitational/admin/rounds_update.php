@@ -1,4 +1,4 @@
-<?
+<?php
 include '../dbutils.php';
 include '../utils.php';
 
@@ -153,13 +153,13 @@ if (!$golfers) {?>
 <?php 
  				$rowcount = 0;
  				$maxid = 0;
-				while ($row = mysql_fetch_assoc($golfers)) {
+				while ($row = db_fetch_assoc($golfers)) {
 						$rowcount += 1;
 
 		?>
 			<tr valign="top">
-				<td align="center" nowrap><a href="rounds_update.php?delete=<? echo $row['id'] ?>">Delete</a></td>
-			<td align="center" nowrap><input type="hidden" name="id<? echo $row['id']?>" value="<? echo $row['id']?>"><? echo $row['number']?></td>
+				<td align="center" nowrap><a href="rounds_update.php?delete=<?php echo $row['id'] ?>">Delete</a></td>
+			<td align="center" nowrap><input type="hidden" name="id<?php echo $row['id']?>" value="<?php echo $row['id']?>"><?php echo $row['number']?></td>
 				<td align="left" nowrap><?php echo createinput_text("location".$row['id'], $row['location'], "20", "50")?></td>
 								</tr>
 
@@ -172,7 +172,7 @@ while ($rowcount<4) {
 ?>
 			<tr valign="top">
 				<td align="left" nowrap>&nbsp;</td>
-			<td align="center" nowrap><input type="hidden" name="numbernew<? echo $rowcount?>" value="<? echo $rowcount?>"><? echo $rowcount?></td>
+			<td align="center" nowrap><input type="hidden" name="numbernew<?php echo $rowcount?>" value="<?php echo $rowcount?>"><?php echo $rowcount?></td>
 				<td align="left" nowrap><?php echo createinput_text("locationnew".$rowcount, "", "20", "50")?></td>
 								</tr>
 <?php 

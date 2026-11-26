@@ -1,4 +1,4 @@
-<?
+<?php
 include '../dbutils.php';
 include '../utils.php';
 
@@ -162,20 +162,20 @@ if (!$golfers) {?>
 
 <?php  				$rowcount = 0;
  				$maxid = 0;
-				while ($row = mysql_fetch_assoc($golfers)) {
+				while ($row = db_fetch_assoc($golfers)) {
 						$rowcount += 1;
 
 		?>
 			<tr valign="top">
-				<td align="left" nowrap><input type="hidden" name="id<? echo $row['id']?>" value="<? echo $row['id']?>"><input type="text" name="nickname<? echo $row['id']?>" id="nickname<? echo $row['id']?>" value="<? echo $row['nickname']?>"></td>
-				<td align="left" nowrap><textarea rows="10" cols="40" name="description<? echo $row['id']?>" id="description<? echo $row['id']?>"><? echo $row['description']?></textarea></td>
-				<td align="left" nowrap><input type="text" name="firstname<? echo $row['id']?>" id="firstname<? echo $row['id']?>" value="<? echo $row['firstname']?>"></td>
-			    <td align="left" nowrap><input type="text" name="lastname<? echo $row['id']?>" id="lastname<? echo $row['id']?>" value="<? echo $row['lastname']?>"></td>
-			    <td align="left" nowrap><input type="text" name="handicap<? echo $row['id']?>" id="handicap<? echo $row['id']?>" value="<? echo $row['handicap']?>"></td>
+				<td align="left" nowrap><input type="hidden" name="id<?php echo $row['id']?>" value="<?php echo $row['id']?>"><input type="text" name="nickname<?php echo $row['id']?>" id="nickname<?php echo $row['id']?>" value="<?php echo $row['nickname']?>"></td>
+				<td align="left" nowrap><textarea rows="10" cols="40" name="description<?php echo $row['id']?>" id="description<?php echo $row['id']?>"><?php echo $row['description']?></textarea></td>
+				<td align="left" nowrap><input type="text" name="firstname<?php echo $row['id']?>" id="firstname<?php echo $row['id']?>" value="<?php echo $row['firstname']?>"></td>
+			    <td align="left" nowrap><input type="text" name="lastname<?php echo $row['id']?>" id="lastname<?php echo $row['id']?>" value="<?php echo $row['lastname']?>"></td>
+			    <td align="left" nowrap><input type="text" name="handicap<?php echo $row['id']?>" id="handicap<?php echo $row['id']?>" value="<?php echo $row['handicap']?>"></td>
 			    </tr>
 				<tr valign="top">
 				<td align="left" nowrap>&nbsp;</td>
-				<td align="left" nowrap><b>Avatar:</b> </b><input type="text" name="avatar<? echo $row['id']?>" id="avatar<? echo $row['id']?>" value="<? echo $row['avatar']?>"></td>
+				<td align="left" nowrap><b>Avatar:</b> </b><input type="text" name="avatar<?php echo $row['id']?>" id="avatar<?php echo $row['id']?>" value="<?php echo $row['avatar']?>"></td>
 				<td align="left" nowrap>&nbsp;</td>
 			    <td align="left" nowrap>&nbsp;</td>
 			    <td align="left" nowrap>&nbsp;</td>
@@ -186,15 +186,15 @@ if (!$golfers) {?>
 
 				while ($rowcount<=8) { ?>
 				<tr valign="top">
-				<td align="left" nowrap><input type="hidden" name="idnew<? echo $rowcount?>" value="<? echo $rowcount?>"><input type="text" name="nicknamenew<? echo $rowcount?>" id="nicknamenew<? echo $rowcount?>" value=""></td>
-				<td align="left" nowrap><textarea rows="10" cols="40"  name="descriptionnew<? echo $rowcount?>" id="descriptionnew<? echo $rowcount?>"></textarea></td>
-				<td align="left" nowrap><input type="text" name="firstnamenew<? echo $rowcount?>" id="firstnamenew<? echo $rowcount?>" value=""></td>
-			    <td align="left" nowrap><input type="text" name="lastnamenew<? echo $rowcount?>" id="lastnamenew<? echo $rowcount?>" value=""></td>
-			    <td align="left" nowrap><input type="text" name="handicapnew<? echo $rowcount?>" id="handicapnew<? echo $rowcount?>" value=""></td>
+				<td align="left" nowrap><input type="hidden" name="idnew<?php echo $rowcount?>" value="<?php echo $rowcount?>"><input type="text" name="nicknamenew<?php echo $rowcount?>" id="nicknamenew<?php echo $rowcount?>" value=""></td>
+				<td align="left" nowrap><textarea rows="10" cols="40"  name="descriptionnew<?php echo $rowcount?>" id="descriptionnew<?php echo $rowcount?>"></textarea></td>
+				<td align="left" nowrap><input type="text" name="firstnamenew<?php echo $rowcount?>" id="firstnamenew<?php echo $rowcount?>" value=""></td>
+			    <td align="left" nowrap><input type="text" name="lastnamenew<?php echo $rowcount?>" id="lastnamenew<?php echo $rowcount?>" value=""></td>
+			    <td align="left" nowrap><input type="text" name="handicapnew<?php echo $rowcount?>" id="handicapnew<?php echo $rowcount?>" value=""></td>
 			    </tr>
 				<tr valign="top">
 				<td align="left" nowrap>&nbsp;</td>
-				<td align="left" nowrap><b>Avatar:</b> <input type="text" name="avatarnew<? echo $rowcount?>" id="avatarnew<? echo $rowcount?>" value=""></td>
+				<td align="left" nowrap><b>Avatar:</b> <input type="text" name="avatarnew<?php echo $rowcount?>" id="avatarnew<?php echo $rowcount?>" value=""></td>
 				<td align="left" nowrap>&nbsp;</td>
 			    <td align="left" nowrap>&nbsp;</td>
 								</tr>

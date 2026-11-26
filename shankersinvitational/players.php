@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 $currentcomp = getCurrentComp();
@@ -106,17 +106,17 @@ $golfersold = mhexecquery($query, $err);
 				
 				<h3 id="section1">Current Shankers</h3>
 				<div class="clearfix teams">
-<?php 				while ($row = mysql_fetch_assoc($golfers)) { 
+<?php 				while ($row = db_fetch_assoc($golfers)) { 
 						if ($row['nickname'] != "" ) {?>
 				<!-- Member -->
 					<div class="col-1-3 boxy">
-						<div class="mosaic-block circle"><a href="/players/<? echo urlencode(strtolower($row['nickname'])) ?>?compid=<?php echo $row['compid']?>" class="mosaic-overlay link fancybox" data-fancybox-group="gallery" title="<? echo $row['nickname']?>"></a>
-						<div class="mosaic-backdrop"><img src="<? echo $row['avatar']?>" alt="Mock" /></div></div>
+						<div class="mosaic-block circle"><a href="/players/<?php echo urlencode(strtolower($row['nickname'])) ?>?compid=<?php echo $row['compid']?>" class="mosaic-overlay link fancybox" data-fancybox-group="gallery" title="<?php echo $row['nickname']?>"></a>
+						<div class="mosaic-backdrop"><img src="<?php echo $row['avatar']?>" alt="Mock" /></div></div>
 						<div class="inner-box">
-							<h4><a href="/players/<? echo urlencode(strtolower($row['nickname'])) ?>?compid=<?php echo $row['compid']?>"><? echo $row['nickname']?></a></h4>
+							<h4><a href="/players/<?php echo urlencode(strtolower($row['nickname'])) ?>?compid=<?php echo $row['compid']?>"><?php echo $row['nickname']?></a></h4>
 							<h5>Handicap: <?php echo $row['handicap']?></h5>
 
-							<em><?php echo writeTexttoHTML(firstNChars($row['description'], 0, 100), true)?>&#8230;<a href="player.php?compid=<?php echo $row['compid']?>&player=<? echo urlencode($row['nickname']) ?>" class="read-more">More</a></em>
+							<em><?php echo writeTexttoHTML(firstNChars($row['description'], 0, 100), true)?>&#8230;<a href="player.php?compid=<?php echo $row['compid']?>&player=<?php echo urlencode($row['nickname']) ?>" class="read-more">More</a></em>
 <!--  							<ul class="social-link">
 								<li><a class="fa fa-facebook-square" href="#"></a></li>
 								<li><a class="fa fa-twitter-square" href="#"></a></li>
@@ -134,13 +134,13 @@ $golfersold = mhexecquery($query, $err);
 				<h3 id="section2">Past Shankers</h3>
 				<div class="clearfix teams">
 					
-<?php 				while ($row = mysql_fetch_assoc($golfersold)) { 
+<?php 				while ($row = db_fetch_assoc($golfersold)) { 
 						if ($row['nickname'] != "" ) {?>
 				<!-- Member -->
 					<div class="col-1-5 boxy">
-						<a href="player.php?compid=<?php echo $row['compid']?>&player=<? echo urlencode($row['nickname']) ?>"><img src="<? echo $row['avatar']?>" alt="<? echo $row['nickname']?>" /></a>
+						<a href="player.php?compid=<?php echo $row['compid']?>&player=<?php echo urlencode($row['nickname']) ?>"><img src="<?php echo $row['avatar']?>" alt="<?php echo $row['nickname']?>" /></a>
 						<div class="inner-box">
-							<h6><a href="player.php?compid=<?php echo $row['compid']?>&player=<? echo urlencode($row['nickname']) ?>"><? echo $row['nickname']?></a></h6>
+							<h6><a href="player.php?compid=<?php echo $row['compid']?>&player=<?php echo urlencode($row['nickname']) ?>"><?php echo $row['nickname']?></a></h6>
 						</div>
 					</div>
 						    	<?php }} ?>

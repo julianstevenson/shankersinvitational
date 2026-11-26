@@ -215,7 +215,7 @@ Bring on 2018!
 			<!-- Start Main Sidebar  -->
 <?php    	$rowcount = 0;
 $endtable = false;
-			while ($eventscoresrow = mysql_fetch_assoc($eventscores))
+			while ($eventscoresrow = db_fetch_assoc($eventscores))
 			{	
 				$rowcount .= 1;
 				if ($rowcount==1) {?>

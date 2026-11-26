@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -7,7 +7,7 @@ $msg = $_GET['msg'];
 $currentcomp = getCurrentComp();
 
 	$query = sprintf( "select competition.compname, count(round.id) as roundcount from round inner join competition on round.compid=competition.id where compid=%s and round.number>0 group by competition.compname;", $currentcomp );
-	$row = mysql_fetch_assoc(mhexecquery($query, $err));
+	$row = db_fetch_assoc(mhexecquery($query, $err));
 
 	$numrounds = $row['roundcount'];
     $compname = $row['compname'];
@@ -17,7 +17,7 @@ $currentcomp = getCurrentComp();
 	$totalscores = mhexecquery($query, $err);
 
 	$query = sprintf( "select count(*) as golfercount from golfer where compid=%s", $currentcomp );
-	$golfercount = mysql_fetch_assoc(mhexecquery($query, $err));
+	$golfercount = db_fetch_assoc(mhexecquery($query, $err));
 	$numplayers = $golfercount['golfercount'];
 ?>
 
@@ -117,12 +117,12 @@ $currentcomp = getCurrentComp();
 					<thead>
 					<tr>
 					<th align="center">Competitor</th>
-<?	$iii=1; 
-	while ($row = mysql_fetch_assoc($rounds)) {
+<?php	$iii=1; 
+	while ($row = db_fetch_assoc($rounds)) {
 	
 	if ($row['number'] > 0) { ?>					
-						<th align="center">Round <? echo $iii ?> <br>(<a href="admin/scores_update.php?roundid=<?echo $row['id']?>"><? echo $row['location']?></a>)</th>
-<?
+						<th align="center">Round <?php echo $iii ?> <br>(<a href="admin/scores_update.php?roundid=<?php echo $row['id']?>"><?php echo $row['location']?></a>)</th>
+<?php
 	$iii += 1;
 }
 }?>						<th align="center">Total</th>
@@ -131,9 +131,9 @@ $currentcomp = getCurrentComp();
 					</tr>
 					</thead>
 					<tbody>
-<?
+<?php
 		$position = 1;
-		while ($rowtotalscore = mysql_fetch_assoc($totalscores)) {
+		while ($rowtotalscore = db_fetch_assoc($totalscores)) {
 				if ($position == 1) {
 					$classtotal = "bf_button_leader";
 				}
@@ -166,15 +166,15 @@ $currentcomp = getCurrentComp();
  ?>
 					<tr valign="middle">
 						<td align="center">
-	       					<p class="lead"><img src="<? echo $rowtotalscore['avatar']?>"  width="35" height="27" border="0">
-	       					<b><? echo $rowtotalscore['nickname'] ?></b></p>
+	       					<p class="lead"><img src="<?php echo $rowtotalscore['avatar']?>"  width="35" height="27" border="0">
+	       					<b><?php echo $rowtotalscore['nickname'] ?></b></p>
 						</td>
-	    			<?
-				while ($row = mysql_fetch_assoc($scores)) {
+	    			<?php
+				while ($row = db_fetch_assoc($scores)) {
 						while ($jjj < $row['number']) {
  if ($row['number'] > 0) { ?>
 						<td align="center"><p class="lead">-</p></td>
-<? }						$jjj +=1;
+<?php }						$jjj +=1;
 						}
 						if ($row['score']+ 0 == 0) {
 							$score =  "-";
@@ -183,40 +183,40 @@ $currentcomp = getCurrentComp();
 							$score =  $row['score'] ;
 						}
 if ($row['number'] > 0) {					?>
-						<td align="center"><p class="lead"><? echo $score ?></p></td>
-<?						$jjj = $row['number'] +1;
+						<td align="center"><p class="lead"><?php echo $score ?></p></td>
+<?php						$jjj = $row['number'] +1;
 }				}
 				while ($jjj <= $numrounds) {
  ?>
 						<td align="center"><p class="lead">-</p></td>
-<? 
+<?php 
 					$jjj += 1;
 				}
 ?>						
-						<td align="center"><p class="lead"><? echo $sumofscore?></p></td>
-						<td align="center"><p class="lead"><b><? echo $totalpoints?></b></p></td>
-						<td align="center"><p class="lead"><? echo $position?></p></td>
+						<td align="center"><p class="lead"><?php echo $sumofscore?></p></td>
+						<td align="center"><p class="lead"><b><?php echo $totalpoints?></b></p></td>
+						<td align="center"><p class="lead"><?php echo $position?></p></td>
 						
 						
 				</tr>
-<?				
+<?php				
 				$position += 1;
 ?>
 <?php }
 ?>
 					<tr valign="middle">
 						<td align="center">&nbsp;</td>
-						<?	
-						if (mysql_num_rows ( $rounds )) {
-							mysql_data_seek($rounds, 0);
+						<?php	
+						if (db_num_rows( $rounds )) {
+							db_data_seek($rounds, 0);
 						}
-						while ($row = mysql_fetch_assoc($rounds)) {
+						while ($row = db_fetch_assoc($rounds)) {
 
 							if ($row['number'] > 0) { ?>					
-							<td align="center"><a href="admin/scores_update.php?roundid=<?echo $row['id']?>"><input type="button" value="Enter Scores"></a></td>
-                                                <?      } else { ?>
+							<td align="center"><a href="admin/scores_update.php?roundid=<?php echo $row['id']?>"><input type="button" value="Enter Scores"></a></td>
+                                                <?php      } else { ?>
                                                         <td align="center">&nbsp;</td>
-							<? }
+							<?php }
 						} ?>						
 						<td align="center">&nbsp;</td>
 						<td align="center">&nbsp;</td>

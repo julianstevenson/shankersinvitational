@@ -2,7 +2,7 @@
 
 The website for the Shankers Invitational golf tournament (ShankersInvitational.com): players, seeding events, leaderboards, tournament info, photos and an admin area for entering scores.
 
-It's a PHP + MySQL site from 2013–2021. This repo runs it locally in Docker, so you don't need PHP or MySQL installed.
+It's a PHP + MySQL site from 2013–2021, updated in 2026 to run on PHP 8.6. This repo runs it locally in Docker, so you don't need PHP or MySQL installed.
 
 ## What's in here
 
@@ -12,7 +12,7 @@ It's a PHP + MySQL site from 2013–2021. This repo runs it locally in Docker, s
 | `shankersinvitational/.htaccess` | Short URLs used by the menus (`/players`, `/players/<nickname>`, `/leaderboard`) |
 | `db/shankersinvitational.sql` | Database backup from January 2021 |
 | `db/zz-add-years.sql` | Adds years 2022–2026 to the `year` table |
-| `Dockerfile` | Web server: Apache + PHP 5.6 |
+| `Dockerfile` | Web server: Apache + PHP 8.6 |
 | `docker-compose.yml` | Starts the web server and the database together |
 
 ## Requirements
@@ -72,19 +72,29 @@ To save a fresh backup of the current data:
 docker compose exec db mariadb-dump -ushankers -p shankersinvitational > db/backup-$(date +%F).sql
 ```
 
-## Why PHP 5.6?
+## PHP version
 
-The code uses the old `mysql_*` functions and `<?` short tags, which were removed in PHP 7. PHP 5.6 runs it without any code changes. To move to a modern PHP version, the database calls in `dbutils.php`, `utils.php` and the pages would need converting to `mysqli` or PDO.
+The site runs on **PHP 8.6** (the latest release, November 2026). It was originally written for PHP 5, and the 2026 upgrade changed:
 
-The code connects to MySQL at `127.0.0.1`. In `docker-compose.yml`, the web container shares the database container's network so that address works unchanged. That's also why port 8080 is published on the `db` service.
+- **Database calls:** the old `mysql_*` functions (removed in PHP 7) are replaced with `mysqli`. All connection code is in `dbutils.php`. The pages use small wrappers (`db_fetch_assoc`, `db_num_rows`, `db_data_seek`) that quietly return nothing if a query fails, like PHP 5 did, instead of crashing the page.
+- **Short tags:** `<?` became `<?php` everywhere.
+- **`split()`** (removed in PHP 7) became `explode()` in `utils.php`.
+- **Two PHP 8 errors fixed:** `form.php` now stops after redirecting, and `admin/competitions_update.php` no longer adds a number to a string.
+- **Lenient SQL mode:** the code relies on MySQL 5.5's old behaviour (for example, adding a player without a Golflink number), so `dbutils.php` turns off strict mode for its connection.
+
+Database settings can be overridden with the environment variables `DB_HOST`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` and `DB_PORT`. The defaults match `docker-compose.yml`, and the code connects to `127.0.0.1`. In `docker-compose.yml`, the web container shares the database container's network so that address works. That's also why port 8080 is published on the `db` service.
+
+PHP warnings (such as undefined variables, which the old code has plenty of) aren't logged, so that `docker compose logs web` shows only real errors. To see everything, change `error_reporting` in the `Dockerfile` to `E_ALL` and rebuild.
 
 ## Notes
 
-- **Keep this repo private.** `dbutils.php` contains database passwords from the old live host, and the SQL backup holds players' personal details. If those passwords are still used anywhere, change them there.
-- The current competition is set in the `currentcomp` table (it still points to 2019). The home page countdown and the player lists use it.
+- **Keep this repo private.** `dbutils.php` contains the database password from the old live host, and the SQL backup holds players' personal details. If those passwords are still used anywhere, change them there.
+- The current competition is set in the `currentcomp` table, which you can change on the admin Competitions page. The home page countdown and the player lists use it.
+- Competitions, players and scores added through the admin pages live only in the Docker database, not in this repo. Use the backup command above to keep a copy.
 - The admin area has no login. Only the two score-entry pages (`scores_update.php`, `seedingscores_update.php`) ask for a password before saving, and that password is written in the code.
 
 ## History
 
 - `2020` – first upload of the live site files.
 - `2026` – Docker setup, recreated `.htaccess` rewrite rules (the original wasn't in the backup), and years 2022–2026 added.
+- `2026` – Upgraded from PHP 5.6 to PHP 8.6.

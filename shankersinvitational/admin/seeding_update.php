@@ -1,4 +1,4 @@
-<?
+<?php
 include '../dbutils.php';
 include '../utils.php';
 
@@ -248,7 +248,7 @@ if (!$golfers) {?>
 <?php 
  				$rowcount = 0;
  				$maxid = 0;
-				while ($row = mysql_fetch_assoc($golfers)) {
+				while ($row = db_fetch_assoc($golfers)) {
 						$rowcount += 1;
 
 		?>
@@ -257,8 +257,8 @@ if (!$golfers) {?>
 				<td align="left" colspan="3"  nowrap><h4>Seeding Event <?php echo $rowcount ?></h4></td>
 				</tr>
 		<tr valign="top">
-				<td align="left" nowrap><a href="seeding_update.php?delete=<? echo $row['id'] ?>"><input type="button" value="Delete"></a></td>
-			<td align="left" nowrap><input type="hidden" name="id<? echo $row['id']?>" value="<? echo $row['id']?>">
+				<td align="left" nowrap><a href="seeding_update.php?delete=<?php echo $row['id'] ?>"><input type="button" value="Delete"></a></td>
+			<td align="left" nowrap><input type="hidden" name="id<?php echo $row['id']?>" value="<?php echo $row['id']?>">
 			<?php  createinput_text("location".$row['id'], $row['location'], "20", "50", "Course")?></td>
 				<td align="left" nowrap><?php  createinput_text("eventdate".$row['id'], $row['eventdate'], "10", "10", "yyyy-mm-dd")?></td>
 				<td align="left" nowrap><?php  createinput_text( "googlemap".$row['id'], $row['googlemap'], "30", "300", "Google map link")?></td>

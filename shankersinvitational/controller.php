@@ -1,4 +1,4 @@
-<?
+<?php
 $urlArr=parse_url($_SERVER['REQUEST_URI']);
 parse_str($urlArr['path'], $path);
 

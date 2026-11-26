@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -460,12 +460,12 @@ $allevents = mhexecquery($query, $err);
 				
 <?php 				
 				$iii=0;
-				while (($row = mysql_fetch_assoc($allevents)) && $iii<4) { ?>
+				while (($row = db_fetch_assoc($allevents)) && $iii<4) { ?>
 				<li>
 						<img class="left stay" src="img/logo-white.png" alt="" />
 						<div class="date"><?php echo displaydate($row['eventdate'])?></div>
 						<h6 class="title"><a href="form.php?seedingid=<?php echo $row['id']?>"><?php echo $row['location']?></a></h6>
-						<p><? 
+						<p><?php 
 						if ($row['writeup'] == "") {
 							echo "Seeding Event";
 						}
@@ -533,8 +533,8 @@ $allevents = mhexecquery($query, $err);
     			<!-- Start Main Content -->
     	 	
     			<ul class="social-thumbs">
-<?php 				while ($row = mysql_fetch_assoc($golfers)) { ?>
-    			<li><a href="player.php?player=<?php echo $row['nickname']?>"><img src="<? echo $row['avatar']?>" alt="<? echo $row['nickname']?>" /></a></li>
+<?php 				while ($row = db_fetch_assoc($golfers)) { ?>
+    			<li><a href="player.php?player=<?php echo $row['nickname']?>"><img src="<?php echo $row['avatar']?>" alt="<?php echo $row['nickname']?>" /></a></li>
 <?php } ?>
     			</ul>
     			

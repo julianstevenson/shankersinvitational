@@ -1,4 +1,4 @@
-<?
+<?php
 include 'dbutils.php';
 include 'utils.php';
 
@@ -80,9 +80,9 @@ $currentcomp = getCurrentComp();
 						    <li class="nav-parent">
 						    	<a href="#">Players</a>
 						    	<ul>
-<?php 				while ($row = mysql_fetch_assoc($golfers)) { 
+<?php 				while ($row = db_fetch_assoc($golfers)) { 
 						if ($row['nickname'] != "" ) {?>
-						    	<li><a href="player.php?player=<? echo urlencode($row['nickname']) ?>"><? echo $row['nickname']?></a></li>
+						    	<li><a href="player.php?player=<?php echo urlencode($row['nickname']) ?>"><?php echo $row['nickname']?></a></li>
 <?php }} ?>
 						    	</ul>
 						    </li>
@@ -90,17 +90,17 @@ $currentcomp = getCurrentComp();
 						    <li class="nav-parent"><a href="form.php">Seeding Events</a>
 						    	<ul>
 <?php				$seedingcompid = 0;
-	 				while ($row = mysql_fetch_assoc($seedings)) { 
+	 				while ($row = db_fetch_assoc($seedings)) { 
 						if ($seedingcompid <> $row['compid'] . 0) {
 							if ($seedingcompid>0) {
 								echo "</li></ul>";
 							}
 							$seedingcompid = $row['compid'] . 0;
 ?>
-						    	<li><a href="form.php?compid=<? echo urlencode($row['compid']) ?>"><? echo $row['compname']?></a>
+						    	<li><a href="form.php?compid=<?php echo urlencode($row['compid']) ?>"><?php echo $row['compname']?></a>
 								<ul>
 								<?php } ?>
-								<li><a href="form.php?compid=<? echo urlencode($row['compid']) ?>&seedingid=<? echo urlencode($row['seedingid']) ?>"><? echo $row['location']?></a></li>
+								<li><a href="form.php?compid=<?php echo urlencode($row['compid']) ?>&seedingid=<?php echo urlencode($row['seedingid']) ?>"><?php echo $row['location']?></a></li>
 						    	
 						    	
 			<?php } ?>
@@ -109,10 +109,10 @@ $currentcomp = getCurrentComp();
 						    </li>
 						    <li class="nav-parent"><a href="scoreboard.php?compid=<?php echo $currentcomp?>">Leader Board</a>
 						    	<ul>
-<?php 				while ($row = mysql_fetch_assoc($comps)) { ?>
-						    	<li><a href="scoreboard.php?compid=<? echo urlencode($row['id']) ?>"><? echo $row['compname']?></a></li>
+<?php 				while ($row = db_fetch_assoc($comps)) { ?>
+						    	<li><a href="scoreboard.php?compid=<?php echo urlencode($row['id']) ?>"><?php echo $row['compname']?></a></li>
 <?php } 
-					mysql_data_seek($comps, 0);
+					db_data_seek($comps, 0);
 
 ?>
 						    	</ul>	
