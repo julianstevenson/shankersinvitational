@@ -23,6 +23,12 @@ $currentcomp = getCurrentComp();
 	//get seeding events
 	$query = "select seeding.id as seedingid, seeding.location, competition.compname, competition.id as compid from competition inner join seeding on seeding.compid=competition.id order by competition.startdate desc, seeding.eventdate asc";
 	$seedings = mhexecquery($query, $comperr);
+
+	//current competition, for the countdown in the pre-header
+	$query = sprintf("SELECT competition.startdate, year.year FROM competition LEFT JOIN year ON year.id = competition.yearid WHERE competition.id=%d", $currentcomp);
+	$countdownrow = db_fetch_assoc(mhexecquery($query, $comperr));
+	$countdownyear = $countdownrow ? ($countdownrow['year'] ?: substr($countdownrow['startdate'], 0, 4)) : '';
+	$countdowndate = $countdownrow ? date('F j, Y 09:00:00', strtotime($countdownrow['startdate'])) : '';
 	?>
     <script type="text/javascript" src="js/main.js"></script>
 	
@@ -45,7 +51,7 @@ $currentcomp = getCurrentComp();
 				</div>
 				<!-- Social Icons -->
 			<div class="pre-header-right right">
-				<strong>2019 Tournament Starts In:</strong> <div class="countdown styled"></div> 
+				<strong><?php echo htmlspecialchars($countdownyear) ?> Tournament Starts In:</strong> <div class="countdown styled" data-date="<?php echo htmlspecialchars($countdowndate) ?>"></div> 
 			</div>
 			
 		</div>	

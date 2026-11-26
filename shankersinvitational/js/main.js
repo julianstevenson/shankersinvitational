@@ -371,7 +371,8 @@ $('.tooltip').tooltipster({
 /* 
 16. COUNTDOWNS ________________________________________________________________ */
 
-var endDate = "March 9, 2019 09:55:00";
+// Start date of the current competition, set by header.php (see admin > The Competitions).
+var endDate = $('.countdown.styled').data('date') || "March 9, 2019 09:55:00";
 
 $('.countdown.simple').countdown({ date: endDate });
 
