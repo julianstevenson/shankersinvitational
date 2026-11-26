@@ -1,0 +1,25 @@
+name: shankers
+services:
+  db:
+    image: mariadb:10.6
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: shankersroot
+      MARIADB_DATABASE: shankersinvitational
+      MARIADB_USER: shankers
+      MARIADB_PASSWORD: mKS6dAMUNCvF5R8Y
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "8080:8080"   # web port (web shares db's network so 127.0.0.1 reaches MySQL)
+      - "3307:3306"   # MySQL for local tools
+  web:
+    build: .
+    restart: unless-stopped
+    network_mode: "service:db"
+    depends_on: [db]
+    volumes:
+      - ./shankersinvitational:/var/www/html
+volumes:
+  dbdata:

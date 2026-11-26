@@ -1,0 +1,11 @@
+# Pretty URLs used by the site menus. The original .htaccess was not in the
+# backup zip, so these rules were recreated from the links in header.php.
+RewriteEngine On
+
+# /players            -> players.php
+# /players/<nickname> -> player.php?player=<nickname>  (keeps ?compid=...)
+RewriteRule ^players/?$ players.php [L,QSA]
+RewriteRule ^players/([^/]+)/?$ player.php?player=$1 [L,QSA,B]
+
+# /leaderboard -> scoreboard.php
+RewriteRule ^leaderboard/?$ scoreboard.php [L,QSA]
